@@ -1,5 +1,5 @@
-#ifndef _LED_H_
-#define _LED_H_
+#ifndef _GPIO_TIMER_H_
+#define _GPIO_TIMER_H_
 
 
 /* ------- Important Notes for LED colors ------- */

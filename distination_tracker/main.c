@@ -1,6 +1,6 @@
 #include "TIVA_HEADERS.h"
 #include "UART.h"
-#include "LED.h"
+#include "GPIO_TIMER.h"
 #include "EEPROM.h"
 #include "inc/hw_memmap.h"
 #include "driverlib/rom.h"
