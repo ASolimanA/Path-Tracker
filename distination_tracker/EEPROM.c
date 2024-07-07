@@ -7,7 +7,7 @@
 #define EEPROM_PROGRAM_SUCCESS 0
 
 
-uint8_t eeprom_init(void) { // Used for initializing the EEPROM without erasing its comtents
+uint8_t eeprom_init(void) { // Used for initializing the EEPROM without erasing its contents
     SysCtlPeripheralEnable(SYSCTL_PERIPH_EEPROM0); 
     uint8_t eeprom_status = EEPROMInit();
     if(eeprom_status == EEPROM_INIT_OK) return 0; // Init Success
@@ -22,7 +22,7 @@ uint8_t eeprom_init_reset(void) {
     return 0;
 }
 
-uint8_t eeprom_write_coords(Coords* data, uint16_t coords_num) {
+uint8_t eeprom_write_coords(Coords* data, uint32_t coords_num) {
     if (EEPROMProgram(&coords_num, 0x0, 4) != EEPROM_PROGRAM_SUCCESS) {
         if(EEPROMInit() != EEPROM_INIT_OK) {
             return 1;
