@@ -4,7 +4,7 @@
 #include <stdbool.h>
 #include <stdint.h>
 
-#include "gps.h"
+#include "GPS.h"
 
 uint8_t eeprom_init(void);
 uint8_t eeprom_init_reset(void);

@@ -1,9 +1,13 @@
 #include "TIVA_HEADERS.h"
+
 #include "UART.h"
 #include "GPIO_TIMER.h"
 #include "EEPROM.h"
+
+
 #include "inc/hw_memmap.h"
 #include "driverlib/rom.h"
+
 #include <math.h>
 #include <stdio.h>
 #include <string.h>
