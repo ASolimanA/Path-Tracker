@@ -37,3 +37,9 @@ void eeprom_read_coords(Coords* data, uint16_t* coords_num) {
     *coords_num = num;
     EEPROMRead(data, 0x4, num * 8);
 }
+
+
+void eeprom_disable(void)
+{
+	SysCtlPeripheralDisable(SYSCTL_PERIPH_EEPROM0); 
+}
