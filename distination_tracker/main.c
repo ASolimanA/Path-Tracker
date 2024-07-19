@@ -4,7 +4,6 @@
 #include "GPIO_TIMER.h"
 #include "EEPROM.h"
 
-
 #include "inc/hw_memmap.h"
 #include "driverlib/rom.h"
 
@@ -32,6 +31,7 @@ float previouslong=0;
 float currentlat=0;
 float currentlong=0;
 float total_distance=0;
+
 char GPS_COUNTER;
 char GPS[80];   //Array to store readings from GPS
 char GPS_logName[] = "$GPGLL,"; //Array to make sure we are reading the correct sentence
@@ -40,9 +40,9 @@ char xycoo[23];  // variable to store latitude and longitude
 char * token;
 char pointscount=0; //indicate how many cooredinates we have recieved ( make sure not to calc distance before 2 cooredinates at least )
 char flagco=0; //indicate if new coordinates came
+
 float coords[2][256] = {0};
 uint16_t coords_idx = 0;
-
 
 // sentence is  $GPGLL,3003.91117,N,03116.71060,E,085049.00,A,A*75
 
@@ -51,7 +51,7 @@ uint16_t coords_idx = 0;
 //------------------------//
 
 
-void GPS_READ(void)  //we will use GPGLL
+void GPS_READ(void)  // we will use GPGLL
 {
 	int k;
 	int r;
@@ -126,8 +126,10 @@ void GPS_format(void)
 
 			currentlat=(atof(GPS_formated[0])); //1st location in recieved Log
 			currentlong=(atof(GPS_formated[2])); //3rd location in recieved Log
+			
 			coords[0][coords_idx] = currentlat;
 			coords[1][coords_idx] = currentlong;
+			
 			coords_idx++;
 			
       //all Egypt lies on North and East
@@ -140,9 +142,9 @@ void GPS_format(void)
 	}
 }
 
+//-----------------------------------------//
+//---  CONVERT_T0_DEGREE_ANGLE_FUNTION  ---//
 //----------------------------------------//
-//--- CONVERT_T0_DEGREE_ANGLE_FUNTION  ---//
-//---------------------------------------//
 
 float convert_to_degree_angle(float angle)
 {
@@ -164,7 +166,6 @@ float convert_to_rad_angle(float angle)
 //-------------------------//
 float GPS_getDistance(float clong, float clat, float dlong, float dlat)
 {
-
     float currentLongRad = convert_to_rad_angle(convert_to_degree_angle(clong));
     float currentLatRad = convert_to_rad_angle(convert_to_degree_angle(clat));
     float destLongRad = convert_to_rad_angle(convert_to_degree_angle(dlong));
@@ -318,6 +319,5 @@ int main(){
 		turn_On_LED(Green);
 		while(1);*/
 	}
-
 
 }

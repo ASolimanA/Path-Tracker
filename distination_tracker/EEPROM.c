@@ -3,13 +3,15 @@
 #include "driverlib/sysctl.h"
 #include "driverlib/eeprom.h"
 
-
 #define EEPROM_PROGRAM_SUCCESS 0
 
-
-uint8_t eeprom_init(void) { // Used for initializing the EEPROM without erasing its contents
+uint8_t eeprom_init(void) {
+	// Used for initializing the EEPROM without erasing its contents
+	
     SysCtlPeripheralEnable(SYSCTL_PERIPH_EEPROM0); 
+	
     uint8_t eeprom_status = EEPROMInit();
+	
     if(eeprom_status == EEPROM_INIT_OK) return 0; // Init Success
     
     return 1; // Init Falied
@@ -22,13 +24,15 @@ uint8_t eeprom_init_reset(void) {
     return 0;
 }
 
+
 uint8_t eeprom_write_coords(Coords* data, uint32_t coords_num) {
     if (EEPROMProgram(&coords_num, 0x0, 4) != EEPROM_PROGRAM_SUCCESS) {
         if(EEPROMInit() != EEPROM_INIT_OK) {
             return 1;
         }
     }
-    EEPROMProgram(&data, 0x4, coords_num *8);
+    EEPROMProgram(data, 0x4, coords_num *8);
+		return 0;
 }
 
 void eeprom_read_coords(Coords* data, uint16_t* coords_num) {
@@ -38,8 +42,8 @@ void eeprom_read_coords(Coords* data, uint16_t* coords_num) {
     EEPROMRead(data, 0x4, num * 8);
 }
 
-
 void eeprom_disable(void)
 {
 	SysCtlPeripheralDisable(SYSCTL_PERIPH_EEPROM0); 
 }
+
