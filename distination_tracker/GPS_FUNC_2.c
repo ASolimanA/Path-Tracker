@@ -4,9 +4,6 @@
 #include "EEPROM.h"
 #include "GPS.h"
 
-
-
-
 //------------------------//
 //--- Global Variables ---//
 //------------------------//
@@ -15,7 +12,6 @@ uint16_t pointscount;
 unsigned char flagco;
 float total_distance;
 
- 
 //----------------------------------------------------------------------//
 //----------------------------- Main Code ------------------------------//
 //----------------------------------------------------------------------//
@@ -42,6 +38,7 @@ int main(){
 	while(1)
 		{
 			Coords DATA[256] ;
+			
 			GPS_FUNCTION(&currentlat, &currentlong, &previouslat, &previouslong, DATA, &coord_IDX);
 			
 			if ((pointscount>=2) && (flagco==1))
@@ -68,8 +65,7 @@ int main(){
 				LED_Reset();
 				break;
 			}
-
-
+			
       LED_Reset();
 			turn_On_LED(Green);
 			Delay_in_seconds(1);
