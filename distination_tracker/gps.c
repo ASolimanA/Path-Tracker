@@ -78,14 +78,12 @@ void GPS_format(char* GPS, float* currentlat, float* currentlong, float* previou
 		}
 }
 
-void GPS_FUNCTION(float* currentlat, float* currentlong, float* previouslat, float* previouslong)
+void GPS_FUNCTION(float* currentlat, float* currentlong, float* previouslat, float* previouslong, Coords* DATA, unsigned char* coords_idx)
 {
 	char GPS[60];   //Array to store readings from GPS
-	
 	//-------------------------//
 	//--- GPS_READ_FUNCTION ---//
 	//-------------------------//
-	
 	GPS_READ(GPS);
 	turn_On_LED(Blue); // Successful
 	Delay_in_seconds(1);
@@ -95,6 +93,11 @@ void GPS_FUNCTION(float* currentlat, float* currentlong, float* previouslat, flo
 	//-------------------------------------//
 	
 	GPS_format(GPS, currentlat, currentlong, previouslat, previouslong);
+	
+	DATA[*coords_idx].latitude = *currentlat;
+	DATA[*coords_idx].longitude = *currentlong;
+	
+	*coords_idx +=1;
 	LED_Reset();
 	turn_On_LED(Blue);
 	turn_On_LED(Green);

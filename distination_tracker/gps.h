@@ -11,7 +11,7 @@ void GPS_READ(char* GPS);
 
 void GPS_format(char* GPS, float* currentlat, float* currentlong, float* previouslat, float* previouslong);
 
-void GPS_FUNCTION(float* currentlat, float* currentlong, float* previouslat, float* previouslong);
+void GPS_FUNCTION(float* currentlat, float* currentlong, float* previouslat, float* previouslong, Coords* DATA, unsigned char* coords_idx);
 
 float convert_to_degree_angle(float angle);
 
